@@ -161,7 +161,8 @@ Blockly.Toolbox.prototype.createFlyout_ = function() {
     RTL: workspace.RTL,
     oneBasedIndex: workspace.options.oneBasedIndex,
     horizontalLayout: workspace.horizontalLayout,
-    toolboxPosition: workspace.options.toolboxPosition
+    toolboxPosition: workspace.options.toolboxPosition,
+    stackGlowFilterId: workspace.options.stackGlowFilterId
   };
 
   if (workspace.horizontalLayout) {
@@ -198,10 +199,13 @@ Blockly.Toolbox.prototype.showAll_ = function() {
 
     // create a label node to go at the top of the category
     var labelString = '<xml><label text="' + category.name_ + '"' +
+      ' id="' + category.id_ + '"' +
       ' category-label="true"' +
+      ' showStatusButton="' + category.showStatusButton_ + '"' +
       ' web-class="categoryLabel">' +
       '</label></xml>';
     var labelXML = Blockly.Xml.textToDom(labelString);
+
     allContents.push(labelXML.firstChild);
 
     allContents = allContents.concat(category.getContents());
@@ -265,21 +269,21 @@ Blockly.Toolbox.prototype.clearSelection = function() {
 };
 
 /**
- * Adds styles on the toolbox indicating blocks will be deleted.
+ * Adds a style on the toolbox. Usually used to change the cursor.
+ * @param {string} style The name of the class to add.
  * @package
  */
-Blockly.Toolbox.prototype.addDeleteStyle = function() {
-  Blockly.utils.addClass(
-      /** @type {!Element} */ (this.HtmlDiv), 'blocklyToolboxDelete');
+Blockly.Toolbox.prototype.addStyle = function(style) {
+  Blockly.utils.addClass(/** @type {!Element} */ (this.HtmlDiv), style);
 };
 
 /**
- * Remove styles from the toolbox that indicate blocks will be deleted.
+ * Removes a style from the toolbox. Usually used to change the cursor.
+ * @param {string} style The name of the class to remove.
  * @package
  */
-Blockly.Toolbox.prototype.removeDeleteStyle = function() {
-  Blockly.utils.removeClass(
-      /** @type {!Element} */ (this.HtmlDiv), 'blocklyToolboxDelete');
+Blockly.Toolbox.prototype.removeStyle = function(style) {
+  Blockly.utils.removeClass(/** @type {!Element} */ (this.HtmlDiv), style);
 };
 
 /**
@@ -659,6 +663,7 @@ Blockly.Toolbox.Category = function(parent, parentHtml, domTree) {
   this.setColour(domTree);
   this.custom_ = domTree.getAttribute('custom');
   this.iconURI_ = domTree.getAttribute('iconURI');
+  this.showStatusButton_ = domTree.getAttribute('showStatusButton');
   this.contents_ = [];
   if (!this.custom_) {
     this.parseContents_(domTree);
@@ -687,7 +692,8 @@ Blockly.Toolbox.Category.prototype.createDom = function() {
   this.item_ = goog.dom.createDom('div',
       {'class': 'scratchCategoryMenuItem'});
   this.label_ = goog.dom.createDom('div',
-      {'class': 'scratchCategoryMenuItemLabel'}, this.name_);
+      {'class': 'scratchCategoryMenuItemLabel'},
+      Blockly.utils.replaceMessageReferences(this.name_));
   if (this.iconURI_) {
     this.bubble_ = goog.dom.createDom('div',
         {'class': 'scratchCategoryItemIcon'});
