@@ -488,18 +488,13 @@ Blockly.Css.CONTENT = [
   '.blocklyBubbleText {',
     'fill: $colour_text;',
   '}',
-
-  '.blocklyFlyout {',
-    'position: absolute;',
-    'z-index: 20;',
-  '}',
-
   '.blocklyFlyout {',
     'position: absolute;',
     'z-index: 20;',
   '}',
   '.blocklyFlyoutButton {',
     'fill: none;',
+    'pointer-events: all;',
   '}',
 
   '.blocklyFlyoutButtonBackground {',
@@ -1187,7 +1182,7 @@ Blockly.Css.CONTENT = [
   '.blocklyDropDownDiv .goog-menuitem-rtl .goog-menuitem-icon {',
      /* Flip left/right positioning. */
      'float: right;',
-     'margin-left: 6px;',
+     'margin-right: -24px;',
   '}',
 
   /* Keyboard shortcut ("accelerator") style. */
@@ -1266,7 +1261,7 @@ Blockly.Css.CONTENT = [
   '}',
 
   '.scratchCategoryMenu {',
-    'width: 52px;',
+    'width: 60px;',
     'background: $colour_toolbox;',
     'color: $colour_toolboxText;',
     'font-size: .7rem;',
