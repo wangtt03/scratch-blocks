@@ -67,6 +67,7 @@ Blockly.Msg.DATA_DELETEALLOFLIST = 'delete all of %1';
 Blockly.Msg.DATA_INSERTATLIST = 'insert %1 at %2 of %3';
 Blockly.Msg.DATA_REPLACEITEMOFLIST = 'replace item %1 of %2 with %3';
 Blockly.Msg.DATA_ITEMOFLIST = 'item %1 of %2';
+Blockly.Msg.DATA_ITEMNUMOFLIST = 'item # of %1 in %2';
 Blockly.Msg.DATA_LENGTHOFLIST = 'length of %1';
 Blockly.Msg.DATA_LISTCONTAINSITEM = '%1 contains %2?';
 Blockly.Msg.DATA_SHOWLIST = 'show list %1';
@@ -275,6 +276,7 @@ Blockly.Msg.SOUND_EFFECTS_PAN = 'pan left/right';
 Blockly.Msg.SOUND_CHANGEVOLUMEBY = 'change volume by %1';
 Blockly.Msg.SOUND_SETVOLUMETO = 'set volume to %1%';
 Blockly.Msg.SOUND_VOLUME = 'volume';
+Blockly.Msg.SOUND_RECORD = 'record...';
 
 // Category labels
 Blockly.Msg.CATEGORY_MOTION = 'Motion';
